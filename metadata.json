@@ -12,6 +12,7 @@
     {"name":"puppetlabs/inifile","version_requirement":">= 1.5.0"}
   ],
   "tags": [
+    "mce",
     "mcelog"
   ],
   "operatingsystem_support": [
