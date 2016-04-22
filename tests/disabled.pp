@@ -1,0 +1,3 @@
+class { 'mcelog':
+  enabled => false,
+}
