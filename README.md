@@ -26,11 +26,11 @@ Full configuration options:
 
 ```puppet
 class { 'mcelog':
-  enabled   => true|false,  # enable state
-  packages  => [...],       # override list of packages to install
-  settings  => {...},       # hash of hashes to apply in mcelog.conf
-  config_fn => '...'        # absolute path for mcelog.conf
-  services  => [...],       # override list of services to start
+  ensure    => present|absent  # ensure state
+  packages  => [...],          # override list of packages to install
+  settings  => {...},          # hash of hashes to apply in mcelog.conf
+  config_fn => '...'           # absolute path for mcelog.conf
+  services  => [...],          # override list of services to start
 }
 ```
 Example:
