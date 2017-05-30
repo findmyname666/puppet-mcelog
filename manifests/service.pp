@@ -1,14 +1,11 @@
-class mcelog::service (
-  $enabled,
-  $service
-) {
-  $_ensure = $enabled ? {
-    true  => running,
-    false => stopped,
+class mcelog::service {
+  $_state = $::mcelog::ensure ? {
+    'present' => true,
+    'absent'  => false,
   }
 
-  service { $service:
-    ensure => $_ensure,
-    enable => $enabled,
+  service { $::mcelog::service:
+    ensure => $_state,
+    enable => $_state,
   }
 }

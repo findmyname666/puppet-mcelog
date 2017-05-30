@@ -1,15 +1,21 @@
 class mcelog::params {
-  $enabled = true
+  $ensure = 'present'
   $settings = {}
   $config_fn = '/etc/mcelog/mcelog.conf'
 
   case $::operatingsystem {
-    redhat,centos,scientific,slc,oraclelinux: {
+    'RedHat','CentOS','Scientific','SLC','OracleLinux': {
       $packages = ['mcelog']
 
       case $::operatingsystemmajrelease {
-        6:       { $service = 'mcelogd' }
-        7:       { $service = 'mcelog'  }
+        '6': {
+          $service = 'mcelogd'
+        }
+
+        '7': {
+          $service = 'mcelog'
+        }
+
         default: {
           fail("Unsupported OS release: \
 ${::operatingsystem} ${::operatingsystemmajrelease}")
@@ -17,12 +23,12 @@ ${::operatingsystem} ${::operatingsystemmajrelease}")
       }
     }
 
-    debian,ubuntu: {
+    'Debian','Ubuntu': {
       $packages = ['mcelog']
       $service  = 'mcelog'
     }
 
-    sles,sled: {
+    'SLES', 'SLED': {
       $packages = ['mcelog']
       $service = 'mcelog'
     }
