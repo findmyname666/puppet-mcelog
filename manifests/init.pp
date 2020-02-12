@@ -1,16 +1,10 @@
 class mcelog (
-  $ensure    = $::mcelog::params::ensure,
-  $packages  = $::mcelog::params::packages,
-  $settings  = $::mcelog::params::settings,
-  $config_fn = $::mcelog::params::config_fn,
-  $service   = $::mcelog::params::service
+  String $ensure                  = $::mcelog::params::ensure,
+  Array $packages                 = $::mcelog::params::packages,
+  Hash $settings                  = $::mcelog::params::settings,
+  Stdlib::Absolutepath $config_fn = $::mcelog::params::config_fn,
+  String $service                 = $::mcelog::params::service
 ) inherits mcelog::params {
-
-  validate_array($packages)
-  validate_hash($settings)
-  validate_absolute_path($config_fn)
-  validate_string($service, $ensure)
-
   contain ::mcelog::install
   contain ::mcelog::service
 
